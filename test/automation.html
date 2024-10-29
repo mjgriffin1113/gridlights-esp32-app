@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lighting Zones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="updateUsernameButton">Hello, <span id="greeting"></span></h1>
+        <img src="logo.png">
+        <h2>Automation</h2>
+        <h3>
+            Scenes 
+        </h3>
+        <!-- <div class="zone">
+            <h1 id="updateZoneNameButton"><span id="zoneName"></span></h1>
+        </div> -->
+
+        <!-- 
+        Drop down to choose scene length, 1 hour, 2 hour, 4 hour, 8 hour, 12 hour, 24 hour
+
+        list of containers, each one is a different element.
+        each element is for selecting the color, effect, speed brightness of part of the scene. 
+        effect is a drop down, color is the same input as the front page, speed and brightness are both sliders with labels.
+
+        button that adds more elements when clicked
+        each container has a trash icon that allows you to remove it from the list (removes from ui)
+
+
+        bottom container lists the zones and has an input box that allows you to choose a number (the number represents a percentage)
+        at the bottom of this list, there is another box that shows the sum of the percentage input boxes
+        
+        if the sum is not 100, then a label warning message pops up which says the sum of the scene split percentages must be 100.
+
+        at the bottom is a 'start scene' button. 
+
+        there is a helpful message below this button that says once a scene is started, it will run until it expires, or until the zone is adjusted from the main page.
+
+        -->
+        
+        <div class="zone">
+            <div class="zoneInfo">
+                <h1 id="updateZoneNameButton"><span id="zoneName"></span></h1>
+                <button class="toggleLightButton" id="toggleLightButton">&#x23FB;</button>
+            </div>
+            <!-- <div class="zoneInfo">
+                <h2>Choose Color:</h2>
+            </div> -->
+            <div class="zoneInfo">
+                <h2>Color:</h2>
+                <!-- <label for="staticColorPicker">Color:</label> -->
+                <div class="colorPicker">
+                    <input type="color" id="staticColorPicker" value="#0000FF">
+                </div>
+            </div>
+            <div class="zoneInfo">
+                <h2>Intensity:</h2>
+                <div class="slider-container">
+                    <input type="range" id="brightnessSlider" min="0" max="255" value="128">
+                    <div class="slider-value" id="sliderValue"></div>
+                </div>
+            </div>
+            <div class="zoneInfo">
+                <h2>Effect:</h1>
+            </div>
+            <div class="zoneInfo">
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #00BFFF, #007FFF);" onclick="setEffect(0)">None</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #FFD700, #FFA500);" onclick="setEffect(38)">Aurora</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #32CD32, #228B22);" onclick="setEffect(115)">Blends</button>
+                </div>        
+            </div>
+            <div class="zoneInfo">
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #FF4500, #FF6347);" onclick="setEffect(91)">Bouncing Balls</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #00BFFF, #007FFF);" onclick="setEffect(2)">Breathe</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #FFD700, #FFA500);" onclick="setEffect(28)">Chase</button>
+                </div>        
+            </div>
+            <div class="zoneInfo">
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #32CD32, #228B22);" onclick="setEffect(67)">Colorwaves</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #FF4500, #FF6347);" onclick="setEffect(112)">Dancing Shadows</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #00BFFF, #007FFF);" onclick="setEffect(90)">Fireworks</button>
+                </div>        
+            </div>
+            <div class="zoneInfo">
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #FFD700, #FFA500);" onclick="setEffect(57)">Lightning</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #32CD32, #228B22);" onclick="setEffect(101)">Pacifica</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #FF4500, #FF6347);" onclick="setEffect(65)">Palette</button>
+                </div>        
+            </div>
+            <div class="zoneInfo">
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #00BFFF, #007FFF);" onclick="setEffect(0)">Phased</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #FFD700, #FFA500);" onclick="setEffect(38)">Plasma</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #32CD32, #228B22);" onclick="setEffect(115)">Simulator</button>
+                </div>        
+            </div>
+            <div class="zoneInfo">
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #FF4500, #FF6347);" onclick="setEffect(91)">Bouncing Balls</button>
+                </div>
+                <div class="effect-wrapper">
+                    <button class="effect-button" style="background: linear-gradient(135deg, #00BFFF, #007FFF);" onclick="setEffect(2)">TV Simulator</button>
+                </div>
+                <div class="effect-wrapper">
+                    <!-- <button class="effect-button" style="background: linear-gradient(135deg, #FFD700, #FFA500);" onclick="setEffect(28)">Chase</button> -->
+                </div>        
+            </div>
+            
+            <div class="zoneInfo">
+                <!-- <label for="staticColorPicker">Color:</label> -->
+            </div>
+           
+            <div class="zoneInfo">
+                <h2>Speed:</h2>
+                <div class="slider-container">
+                    <input type="range" id="speedSlider" min="0" max="255" value="128">
+                    <div class="slider-value" id="speedSliderValue"></div>
+                </div>
+            </div>
+            <div class="zoneInfo">
+                <h2 class="ipHeading">IP Address:</h2>
+                <input type="text" id="ipInput" placeholder="0.0.0.0">
+            </div>
+        </div>
+
+        <!-- <div class="zone">
+            <div class="icon-container">
+                <div class="button" onclick="handleClick('effect1')">
+                    <div class="circle circle1"></div>
+                    <div class="circle circle2"></div>
+                    <div class="circle circle3"></div>
+                </div>
+                <div class="icon-text">Effect Name</div>
+            </div>
+        </div> -->
+        
+        <!-- <div class="zone">
+            <h1>LED Control</h1>
+            <button id="ledOnButton">Turn LED On</button>
+            <button id="ledOffButton">Turn LED Off</button>
+        </div> -->
+    </div>
+    <div class="footer">
+        <div>Home</div>
+        <div>Automation</div>
+        <!-- <div>Library</div> -->
+        <!-- <div>Settings</div> -->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
